@@ -15,6 +15,7 @@
 
 ## Install
 
+- VScode
 - Ruby
 - Ruby on Rails(as a gem)
 - Postgresql database

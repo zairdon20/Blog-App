@@ -115,7 +115,7 @@ users = [{
     :text => "Elementum pulvinar etiam ",
     :author_id => 1,
     :post_id => 5
-  },{
+  },{ # root; 'pages#home'
     :text => "perspiciatis unde omnis",
     :author_id => 2,
     :post_id => 1

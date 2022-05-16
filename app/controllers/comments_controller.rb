@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 class CommentsController < ApplicationController
   def new
     @comment = Comment.new
@@ -8,6 +10,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(text: comment_params[:text], author_id: current_user.id, post_id: @post.id)
 
     if @comment.save
+      flash[:notice] = 'comment created successfully'
       redirect_to "/users/#{@post.author_id}/posts/#{@post.id}", notice: 'Success!'
     else
       render :new, alert: 'Error occured!'

@@ -7,7 +7,7 @@
             <li class="user-list">
             <div class="user-details">
                 <%# <%= image_tag("profile.jpg", :alt => "User icon") %> 
-                <%= link_to user.name, user_path(user.id) %>
+                <%= link_to user.name, user_path(user) %>
                 <p>Number of posts: <span><%= user.posts.count %></span></p>
             </div>
             </li>

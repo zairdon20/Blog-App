@@ -41,7 +41,6 @@ class PostsController < ApplicationController
     redirect_to user_posts_path(post.author_id)
   end
 
-
   private
 
   def post_params

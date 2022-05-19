@@ -42,7 +42,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.debug_exception_response_format = :default
-  
+
+  config.debug_exception_response_format = :api
+
+  config.middleware.use Rack::MethodOverride
+
+  config.middleware.delete ::Rack::Sendfile
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

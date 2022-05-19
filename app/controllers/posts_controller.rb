@@ -27,7 +27,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
+  def showI
+    load_and_authorize_resource
     @post = User.find(params[:user_id]).posts.find(params[:id])
   end
 

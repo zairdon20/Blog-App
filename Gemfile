@@ -6,7 +6,6 @@ ruby '3.1.2'
 gem 'devise'
 
 gem 'cancancan'
-gem 'capybara'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 

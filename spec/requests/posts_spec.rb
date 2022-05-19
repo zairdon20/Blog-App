@@ -1,21 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  describe 'GET /index' do
-    it 'returns http success' do
-      get '/users/1/posts'
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:index)
-      expect(response.body).to include('Here is list of posts')
+  describe 'GET users/:user_id/posts' do
+    before :each do
+      get user_posts_path(user_id: 20)
+    end
+    it 'responds with status 200' do
+      expect(response).to have_http_status(200)
     end
 
-    describe 'GET /show' do
-      it 'returns show page' do
-        get '/users/1/posts/1'
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:show)
-        expect(response.body).to include('Here is list of all posts for one user')
+    it 'renders the posts/index view' do
+      expect(response).to render_template('posts/index')
+    end
+
+    context 'with render_views enabled' do
+      it 'renders view with posts text in the index template' do
+        expect(response.body).to include('Posts')
+      end
+    end
+  end
+
+  describe 'GET' do
+    before :each do
+      get user_post_path(user_id: 20, id: 2)
+    end
+    it 'responds with status 200' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'renders the posts/show view' do
+      expect(response).to render_template('posts/show')
+    end
+
+    context 'with render_views enabled' do
+      it 'renders view with post#2 text in the show template' do
+        expect(response.body).to include('Posts#2')
       end
     end
   end
 end
+

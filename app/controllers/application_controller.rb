@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   add_flash_types :danger, :info, :warning, :success, :messages, :notice, :alert
   protect_from_forgery with: :exception
 

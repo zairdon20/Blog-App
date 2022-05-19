@@ -1,21 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'GET /index' do
-    it 'returns index page' do
-      get '/users/'
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:index)
-      expect(response.body).to include('Here is list of users')
+  describe 'GET /' do
+    before :each do
+      get users_path
+    end
+
+    it 'responds with status 200' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'renders the users/index view' do
+      expect(response).to render_template('users/index')
+    end
+
+    context 'with render_views enabled' do
+      it 'renders view with home page text in the index template' do
+        expect(response.body).to include('Home page')
+      end
     end
   end
 
-  describe 'GET /show' do
-    it 'returns show page' do
-      get '/users/1'
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:show)
-      expect(response.body).to include('Here is info about user')
+  describe 'GET /users/:id' do
+    before :each do
+      get user_path(id: 20)
+    end
+
+    it 'responds with status 200' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'renders the users/show view' do
+      expect(response).to render_template('users/show')
+    end
+
+    context 'with render_views enabled' do
+      it 'renders view with User profile text in the show template' do
+        expect(response.body).to include('User profile')
+      end
     end
   end
 end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root 'pages#home'
   resources :likes
   resources :users, only: [:index, :show] do
-    resources :posts, only: [:index, :new, :show, :create]
+    resources :posts, only: [:index, :new, :show, :create, :destroy]
   end
 
   root "users#index"
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 
   resources :posts do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy, :new]
     resources :likes, only: [:create]
   end
 end
